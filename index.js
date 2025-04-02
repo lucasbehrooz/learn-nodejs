@@ -20,6 +20,15 @@ server.get("/customers", (req, res) => {
     return res.json(customers);
 });
 
+server.get("/customers/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+
+    const customer = customers.find((item) => item.id === id);
+    const status = customer ? 200 : 404;
+
+    return res.status(status).json(customer || { error: "Customer not found" });
+});
+
 server.use((req, res) => {
     res.status(404).json({ error: "Not Found" });
 });
