@@ -12,11 +12,11 @@ class CustomersController {
     }
 
     show(req, res) {
-        const id = parseInt(req.params.id);
+        const id = parseInt(req.params.id, 10);
         const customer = customers.find((item) => item.id === id);
         const status = customer ? 200 : 404;
 
-        console.log("GET :: /customers/:id", JSON.stringify(customer));
+        console.warn("GET :: /customers/:id", JSON.stringify(customer));
         return res
             .status(status)
             .json(customer || { error: "Customer not found" });
@@ -33,7 +33,7 @@ class CustomersController {
     }
 
     update(req, res) {
-        const id = parseInt(req.params.id);
+        const id = parseInt(req.params.id, 10);
         const { name, site } = req.body;
 
         const index = customers.findIndex((item) => item.id === id);
@@ -47,7 +47,7 @@ class CustomersController {
             .json(customers[index] || { error: "Customer not found" });
     }
     destroy(req, res) {
-        const id = parseInt(req.params.id);
+        const id = parseInt(req.params.id, 10);
         const index = customers.findIndex((item) => item.id === id);
         const status = index >= 0 ? 200 : 404;
         if (index >= 0) {
