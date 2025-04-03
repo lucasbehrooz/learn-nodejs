@@ -23,6 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^5.1.0",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "sucrase": "^3.35.0"
   }
 }
